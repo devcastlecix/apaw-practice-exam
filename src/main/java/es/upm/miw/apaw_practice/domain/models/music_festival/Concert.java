@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Concert {
 
-    private String concertCode;
+    private String code;
     private LocalDate date;
     private BigDecimal ticketPrice;
     private boolean isSoldOut;
@@ -19,8 +19,8 @@ public class Concert {
         this.artists = new ArrayList<>();
     }
 
-    public Concert(String concertCode, LocalDate date, BigDecimal ticketPrice, boolean isSoldOut) {
-        this.concertCode = concertCode;
+    public Concert(String code, LocalDate date, BigDecimal ticketPrice, boolean isSoldOut) {
+        this.code = code;
         this.date = date;
         this.ticketPrice = ticketPrice;
         this.isSoldOut = isSoldOut;
@@ -28,12 +28,12 @@ public class Concert {
     }
 
 
-    public String getConcertCode() {
-        return concertCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setConcertCode(String concertCode) {
-        this.concertCode = concertCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public LocalDate getDate() {
@@ -79,7 +79,7 @@ public class Concert {
     @Override
     public String toString() {
         return "Concert{" +
-                "concertCode='" + concertCode + '\'' +
+                "code='" + code + '\'' +
                 ", date=" + date +
                 ", ticketPrice=" + ticketPrice +
                 ", isSoldOut=" + isSoldOut +

@@ -15,7 +15,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.hotel.HotelSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.hotel_retired.HotelRetiredSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.martial_art.MartialArtSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.military.MilitarySeederService;
-import es.upm.miw.apaw_practice.adapters.mongodb.music_festival.MusicFestivalSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.music_lesson.MusicLessonSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.night_life.NightLifeSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
@@ -27,6 +26,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.wushu_sport.WushuSportSeederSer
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary_clinic.VeterinaryClinicSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.movies.MoviesSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.company.CompanySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.music_festival.MusicFestivalSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -149,7 +149,7 @@ public class DatabaseSeederService {
         martialArtSeederService.seedDatabase() ;
         eCommerceSeederService.seedDatabase();
         companySeederService.seedDatabase();
-
+        musicFestivalSeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -179,6 +179,7 @@ public class DatabaseSeederService {
         martialArtSeederService.deleteAll();
         martialArtSeederService.deleteAll();
         companySeederService.deleteAll();
+        musicFestivalSeederService.deleteAll();
         this.seedDatabase();
     }
 

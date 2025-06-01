@@ -21,11 +21,12 @@ public class StageEntity {
     private LocalDateTime openTime;
 
     public StageEntity() {
-        //empty from framework
+        // empty for framework
     }
 
     public StageEntity(String name, String location, int capacity, LocalDateTime openTime) {
         this.id = UUID.randomUUID().toString();
+        this.name = name;
         this.location = location;
         this.capacity = capacity;
         this.openTime = openTime;
@@ -58,15 +59,19 @@ public class StageEntity {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hashCode(this.name);
+    }
+
+    @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
-        if (object == null || getClass() != object.getClass()) {
+        if (!(object instanceof StageEntity other)) {
             return false;
         }
-        StageEntity that = (StageEntity) object;
-        return Objects.equals(this.name, that.name);
+        return Objects.equals(this.name, other.name);
     }
 
     @Override

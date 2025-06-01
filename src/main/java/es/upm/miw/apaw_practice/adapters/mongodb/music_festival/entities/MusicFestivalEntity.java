@@ -6,11 +6,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "music_festivals")
@@ -22,12 +20,10 @@ public class MusicFestivalEntity {
     private String name;
     private LocalDateTime creationDate;
     private BigDecimal budget;
-
-    @DBRef(lazy = true)
     private List<ConcertEntity> concerts;
 
     public MusicFestivalEntity() {
-        //empty from framework
+        // empty for framework
     }
 
     public MusicFestivalEntity(String name, LocalDateTime creationDate, BigDecimal budget, List<ConcertEntity> concerts) {
@@ -47,11 +43,9 @@ public class MusicFestivalEntity {
     public MusicFestival toDomain() {
         MusicFestival musicFestival = new MusicFestival();
         BeanUtils.copyProperties(this, musicFestival, "concerts");
-        musicFestival.setConcerts(
-                this.concerts != null ?
-                this.concerts.stream()
-                        .map(ConcertEntity::toDomain)
-                        .collect(Collectors.toList()): null);
+        musicFestival.setConcerts(this.concerts != null
+                ? this.concerts.stream().map(ConcertEntity::toDomain).toList()
+                : null);
         return musicFestival;
     }
 
@@ -80,15 +74,19 @@ public class MusicFestivalEntity {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hashCode(this.name);
+    }
+
+    @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
-        if (object == null || getClass() != object.getClass()) {
+        if (!(object instanceof MusicFestivalEntity other)){
             return false;
         }
-        MusicFestivalEntity that = (MusicFestivalEntity) object;
-        return Objects.equals(this.name, that.name);
+        return Objects.equals(this.name, other.name);
     }
 
     @Override

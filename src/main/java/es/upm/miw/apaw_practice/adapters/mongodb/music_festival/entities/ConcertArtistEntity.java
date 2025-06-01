@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.music_festival.entities;
 
 import es.upm.miw.apaw_practice.domain.models.music_festival.ConcertArtist;
-
 import java.util.Objects;
 import java.util.UUID;
 import org.springframework.beans.BeanUtils;
@@ -20,7 +19,7 @@ public class ConcertArtistEntity {
     private double rating;
 
     public ConcertArtistEntity() {
-        //empty from framework
+        // empty for framework
     }
 
     public ConcertArtistEntity(String name, String nationality, double rating) {
@@ -35,7 +34,6 @@ public class ConcertArtistEntity {
         BeanUtils.copyProperties(this, artist);
         return artist;
     }
-
 
     public String getId() {
         return id;
@@ -54,15 +52,19 @@ public class ConcertArtistEntity {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hashCode(this.name);
+    }
+
+    @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
-        if (object == null || getClass() != object.getClass()) {
+        if (!(object instanceof ConcertArtistEntity other)) {
             return false;
         }
-        ConcertArtistEntity that = (ConcertArtistEntity) object;
-        return Objects.equals(this.name, that.name);
+        return Objects.equals(this.name, other.name);
     }
 
     @Override

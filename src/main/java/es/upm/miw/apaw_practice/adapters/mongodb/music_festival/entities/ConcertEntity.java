@@ -5,20 +5,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
-import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "concerts")
 public class ConcertEntity {
 
-    @Id
-    private String id;
-    @Indexed(unique = true)
     private String code;
     private LocalDate date;
     private BigDecimal ticketPrice;
@@ -31,34 +22,27 @@ public class ConcertEntity {
     private List<ConcertArtistEntity> artists;
 
     public ConcertEntity() {
-        //empty from framework
+        // empty for framework
     }
 
     public ConcertEntity(String code, LocalDate date, BigDecimal ticketPrice, boolean isSoldOut,
-                         StageEntity stageEntity, List<ConcertArtistEntity> artists) {
-        this.id = UUID.randomUUID().toString();
+                         StageEntity stage, List<ConcertArtistEntity> artists) {
         this.code = code;
         this.date = date;
         this.ticketPrice = ticketPrice;
         this.isSoldOut = isSoldOut;
-        this.stage = stageEntity;
+        this.stage = stage;
         this.artists = artists;
     }
 
     public Concert toDomain() {
         Concert concert = new Concert();
         BeanUtils.copyProperties(this, concert, "stage", "artists");
-        concert.setStage(this.stage != null ? this.stage.toDomain(): null);
-        concert.setArtists( this.artists != null ?
-                this.artists.stream()
-                        .map(ConcertArtistEntity::toDomain)
-                        .collect(Collectors.toList()) : null
-        );
+        concert.setStage(this.stage != null ? this.stage.toDomain() : null);
+        concert.setArtists(this.artists != null
+                ? this.artists.stream().map(ConcertArtistEntity::toDomain).toList()
+                : null);
         return concert;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getCode() {
@@ -94,22 +78,25 @@ public class ConcertEntity {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hashCode(this.code);
+    }
+
+    @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
-        if (object == null || getClass() != object.getClass()) {
+        if (!(object instanceof ConcertEntity other)) {
             return false;
         }
-        ConcertEntity that = (ConcertEntity) object;
-        return Objects.equals(this.code, that.code);
+        return Objects.equals(this.code, other.code);
     }
 
     @Override
     public String toString() {
         return "ConcertEntity{" +
-                "id='" + id + '\'' +
-                ", concertCode='" + code + '\'' +
+                " concertCode='" + code + '\'' +
                 ", date=" + date +
                 ", ticketPrice=" + ticketPrice +
                 ", isSoldOut=" + isSoldOut +
