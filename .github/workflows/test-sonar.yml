@@ -1,7 +1,7 @@
 name: DevOps
 on:
   push:
-    branches: ['develop', 'release-*']
+    branches: ['main', 'develop','release-*']
 jobs:
   devops:
     name: Test - Unit & Integration & SonarCloud Scan & Slack WebHook
@@ -26,8 +26,8 @@ jobs:
         if: success() # always() failure() success()
         run: >
           mvn -B verify -DskipTests sonar:sonar
-          -Dsonar.projectKey=es.upm.miw:apaw-practice
-          -Dsonar.organization=miw-upm-github
+          -Dsonar.projectKey=devcastlecix_apaw-practice-exam
+          -Dsonar.organization=dev-castle
           -Dsonar.host.url=https://sonarcloud.io
           -Dsonar.login=$SONAR_TOKEN
         env:
