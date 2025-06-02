@@ -74,44 +74,17 @@ public class MusicFestivalSeederService {
 
     private List<ConcertEntity> seedConcerts(List<StageEntity> stages, List<ConcertArtistEntity> artists) {
         return Arrays.asList(
-                // SpringFest concert
-                new ConcertEntity("CON001", LocalDate.of(2025, 5, 15), BigDecimal.valueOf(60.50), false, stages.get(0),                                         // MainStage
-        Arrays.asList(artists.get(0), artists.get(1), artists.get(2))
-                ),
-                // SummerBeat concerts
-                new ConcertEntity("CON002", LocalDate.of(2025, 6, 15), BigDecimal.valueOf(55.00), false, stages.get(0),                                         // MainStage reused
-                        Arrays.asList(artists.get(0), artists.get(3), artists.get(7))
-                ),
-                new ConcertEntity("CON005", LocalDate.of(2025, 6, 16), BigDecimal.valueOf(58.50), false, stages.get(4),                                         // SummerStage
-                        Arrays.asList(artists.get(1), artists.get(5), artists.get(6))
-                ),
-                // AutumnRock concerts
-                new ConcertEntity("CON003", LocalDate.of(2025, 9, 10), BigDecimal.valueOf(65.00), false, stages.get(2),                                         // DanceFloor
-                        Arrays.asList(artists.get(2), artists.get(4), artists.get(5))
-                ),
-                new ConcertEntity("CON006", LocalDate.of(2025, 9, 11), BigDecimal.valueOf(66.00), true, stages.get(2),                                         // DanceFloor reused
-                        Arrays.asList(artists.get(0), artists.get(2), artists.get(7))
-                ),
-                // MultiGenreFest concerts
-                new ConcertEntity("CON007", LocalDate.of(2025, 8, 12), BigDecimal.valueOf(62.00), false, stages.get(6),                                         // FusionStage
-                        Arrays.asList(artists.get(3), artists.get(5), artists.get(6))
-                ),
-                new ConcertEntity("CON008", LocalDate.of(2025, 8, 13), BigDecimal.valueOf(64.50), false, stages.get(7),                                         // IndieStage
-                        Arrays.asList(artists.get(2), artists.get(4), artists.get(7))
-                ),
-                new ConcertEntity("CON009", LocalDate.of(2025, 8, 14), BigDecimal.valueOf(59.00), true, stages.get(8),                                         // EDMStage
-                        Arrays.asList(artists.get(0), artists.get(1), artists.get(7))
-                ),
-                // MegaFestival concerts
-                new ConcertEntity("CON010", LocalDate.of(2025, 7, 22), BigDecimal.valueOf(72.00), false, stages.get(9),                                         // ArenaStage
-                        Arrays.asList(artists.get(0), artists.get(4), artists.get(7))
-                ),
-                new ConcertEntity("CON011", LocalDate.of(2025, 7, 23), BigDecimal.valueOf(68.50), false, stages.get(10),                                        // SideStage
-                        Arrays.asList(artists.get(1), artists.get(2), artists.get(5))
-                ),
-                new ConcertEntity("CON012", LocalDate.of(2025, 7, 24), BigDecimal.valueOf(75.00), false, stages.get(11),                                        // TentStage
-                        Arrays.asList(artists.get(1), artists.get(3), artists.get(6))
-                )
+                new ConcertEntity("CON001", LocalDate.of(2025, 5, 15), BigDecimal.valueOf(60.50), false, stages.get(0), Arrays.asList(artists.get(0), artists.get(1), artists.get(2))),
+                new ConcertEntity("CON002", LocalDate.of(2025, 6, 15), BigDecimal.valueOf(55.00), false, stages.get(0), Arrays.asList(artists.get(0), artists.get(3), artists.get(7))),
+                new ConcertEntity("CON005", LocalDate.of(2025, 6, 16), BigDecimal.valueOf(58.50), false, stages.get(4), Arrays.asList(artists.get(1), artists.get(5), artists.get(6))),
+                new ConcertEntity("CON003", LocalDate.of(2025, 9, 10), BigDecimal.valueOf(65.00), false, stages.get(2), Arrays.asList(artists.get(2), artists.get(4), artists.get(5))),
+                new ConcertEntity("CON006", LocalDate.of(2025, 9, 11), BigDecimal.valueOf(66.00), true, stages.get(2), Arrays.asList(artists.get(0), artists.get(2), artists.get(7))),
+                new ConcertEntity("CON007", LocalDate.of(2025, 8, 12), BigDecimal.valueOf(62.00), false, stages.get(6), Arrays.asList(artists.get(3), artists.get(5), artists.get(6))),
+                new ConcertEntity("CON008", LocalDate.of(2025, 8, 13), BigDecimal.valueOf(64.50), false, stages.get(7), Arrays.asList(artists.get(2), artists.get(4), artists.get(7))),
+                new ConcertEntity("CON009", LocalDate.of(2025, 8, 14), BigDecimal.valueOf(59.00), true, stages.get(8), Arrays.asList(artists.get(0), artists.get(1), artists.get(7))),
+                new ConcertEntity("CON010", LocalDate.of(2025, 7, 22), BigDecimal.valueOf(72.00), false, stages.get(9), Arrays.asList(artists.get(0), artists.get(4), artists.get(7))),
+                new ConcertEntity("CON011", LocalDate.of(2025, 7, 23), BigDecimal.valueOf(68.50), false, stages.get(10), Arrays.asList(artists.get(1), artists.get(2), artists.get(5))),
+                new ConcertEntity("CON012", LocalDate.of(2025, 7, 24), BigDecimal.valueOf(75.00), false, stages.get(11), Arrays.asList(artists.get(1), artists.get(3), artists.get(6)))
         );
     }
 
